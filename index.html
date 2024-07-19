@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Page with Chart.js</title>
+    <style>
+        /* CSS styles can be included here or linked externally */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Simple HTML Page with Chart.js</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="home">
+        <h2>Home</h2>
+        <p>Welcome to our simple HTML page.</p>
+    </section>
+
+    <section id="about">
+        <h2>About</h2>
+        <p>This page demonstrates a basic HTML structure.</p>
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <ul>
+            <li>Web Development</li>
+            <li>Graphic Design</li>
+            <li>SEO Services</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>You can reach us at <a href="mailto:contact@example.com">contact@example.com</a>.</p>
+    </section>
+
+    <section>
+        <canvas id="myChart"></canvas>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Simple HTML Page. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Dummy function to generate labels
+    function generateLabels() {
+        return ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    }
+
+    // Dummy function to generate data
+    function generateData() {
+        return [65, 59, 80, 81, 56, 55, 40];
+    }
+
+    // Dummy Utils object (assuming Utils is an object with CHART_COLORS and transparentize method)
+    const Utils = {
+        CHART_COLORS: {
+            red: 'rgb(255, 99, 132)'
+        },
+        transparentize(color) {
+            return color.replace('rgb', 'rgba').replace(')', ', 0.2)');
+        }
+    };
+
+    // Constructing the data object
+    const data = {
+        labels: generateLabels(),
+        datasets: [
+            {
+                label: 'Dataset',
+                data: generateData(),
+                borderColor: Utils.CHART_COLORS.red,
+                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red),
+                fill: false
+            }
+        ]
+    };
+
+    // Using Chart.js to create a chart
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                // You can add chart options here
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
