@@ -1,0 +1,78 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day"],
+            "responses": ["Hello! Welcome to Elephanto Studios", "Hi there, how can we assist you today?"],
+            "context": [""]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
+            "responses": ["See you! Have a great day!", "Goodbye! Feel free to reach out anytime."],
+            "context": [""]
+        },
+        {
+            "tag": "thanks",
+            "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
+            "responses": ["You're welcome! Glad to be of help.", "My pleasure. If you have more questions, just ask!"],
+            "context": [""]
+        },
+        {
+            "tag": "query",
+            "patterns": ["What is Elephanto Studios?", "Tell me about Elephanto Studios", "What services do you offer?","What are your services?"],
+            "responses": [
+                "Elephanto Studios is a leading Animation, Graphic Design, Video Editing, and Video Production studio based in Saudi Arabia. We specialize in various types of animation including Motion Graphics, Character Animation, Isometric Animation, Line-Art Animation, and Whiteboard Animation. Our expertise also extends to video editing with services like color grading, montages, green screen edits, and explainer videos. Additionally, we offer graphic design services such as logo design, social media post design, and more."
+            ],
+            "context": [""]
+        },
+        {
+            "tag": "video_editing",
+            "patterns": ["What video editing services do you offer?", "Tell me about your video editing services"],
+            "responses": [
+                "We offer a range of video editing services including color grading, cash cow editing, montages, green screen editing, explainer videos, morphing videos, and podcast editing."
+            ],
+            "context": [""]
+        },
+        {
+            "tag": "animation_services",
+            "patterns": ["What types of animation do you do?", "Tell me about your animation services"],
+            "responses": [
+                "We provide a wide range of animation services including Motion Graphics, Character Animation, Isometric Animation, Line-Art Animation, and Whiteboard Animation."
+            ],
+            "context": [""]
+        },
+        {
+            "tag": "design_services",
+            "patterns": ["What design services do you offer?", "Tell me about your design services"],
+            "responses": [
+                "Our design services include logo design, social media post design, banner design, invitation card design, brochure design, caricature designs, whiteboard designs, and storyboarding."
+            ],
+            "context": [""]
+        },
+        {
+            "tag": "developer_info",
+            "patterns": ["Who is developer ?", "Tell me about the developer of your web"],
+            "responses": [
+                "Wadood Ul islam is the developer of the Elephanto Studios web app."
+            ],
+            "context": [""]
+        },
+        {
+            "tag": "owner_info",
+            "patterns": ["Who is the owner of Elephanto Studios?", "Tell me about the owner of Elephanto Studios"],
+            "responses": [
+                "Saad Islam is the owner of Elephanto Studios."
+            ],
+            "context": [""]
+        },
+        {
+            "tag": "Contact",
+            "patterns": ["Contact Details", "How to contact you ?"],
+            "responses": [
+                "0311-2622567 or email us at business.saad@elephanto.com"
+            ],
+            "context": [""]
+        }
+    ]
+}

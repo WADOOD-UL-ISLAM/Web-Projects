@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Light grey background for the whole page */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 500px;
+            background-color: #ffffff; /* White background for chat container */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-box {
+            border: 1px solid #e0e0e0; /* Light grey border */
+            height: 400px;
+            overflow-y: scroll;
+            padding: 20px;
+            background-color: #f9f9f9; /* Very light grey background */
+            flex: 1; /* Takes up all available space */
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+            line-height: 1.5;
+        }
+        .message.user {
+            background-color: #ff66b2; /* Pink background for user messages */
+            color: #ffffff; /* White text */
+            margin-left: auto; /* Align to right */
+            text-align: right;
+        }
+        .message.bot {
+            background-color: #e0e0e0; /* Light grey background for bot messages */
+            color: #333333; /* Dark grey text */
+            text-align: left;
+        }
+        .input-box {
+            display: flex;
+            border-top: 1px solid #e0e0e0; /* Border between chat and input */
+            background-color: #ffffff; /* White background for input box */
+            padding: 10px;
+        }
+        .input-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #e0e0e0; /* Light grey border */
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none; /* Remove default outline */
+        }
+        .input-box input:focus {
+            border-color: #ff66b2; /* Pink border on focus */
+        }
+        .input-box button {
+            padding: 10px 20px;
+            background-color: #ff66b2; /* Pink background for button */
+            border: none;
+            border-radius: 5px;
+            color: #ffffff; /* White text */
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .input-box button:hover {
+            background-color: #cc5296; /* Darker pink on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userMessage = document.getElementById('user-input').value;
+            if (userMessage.trim() === "") return;
+
+            // Display user message
+            const chatBox = document.getElementById('chat-box');
+            const userMessageElement = document.createElement('div');
+            userMessageElement.className = 'message user';
+            userMessageElement.textContent = `You: ${userMessage}`;
+            chatBox.appendChild(userMessageElement);
+
+            // Send message to server
+            fetch('/get', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `message=${encodeURIComponent(userMessage)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display bot response
+                const botMessageElement = document.createElement('div');
+                botMessageElement.className = 'message bot';
+                botMessageElement.textContent = `Elephanto : ${data.response}`;
+                chatBox.appendChild(botMessageElement);
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+            });
+
+            // Clear input field
+            document.getElementById('user-input').value = "";
+        }
+    </script>
+</body>
+</html>
